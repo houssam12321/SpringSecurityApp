@@ -4,9 +4,11 @@ package com.example.loginDemo.controller;
 import com.example.loginDemo.model.User;
 import com.example.loginDemo.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AuthController {
@@ -17,7 +19,10 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(@RequestParam(value = "error", required = false) String error, Model model)  {
+        if (error != null) {
+            model.addAttribute("errorMessage", "Nom d'utilisateur ou mot de passe incorrect.");
+        }
         return "login";
     }
 

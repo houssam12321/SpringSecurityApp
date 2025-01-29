@@ -7,6 +7,12 @@
 <body>
 <div class="container mt-5">
     <h1>Login</h1>
+
+    <!-- Afficher le message d'erreur -->
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <span th:text="${errorMessage}"></span>
+    </div>
+
     <form th:action="@{/login}" method="post">
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
